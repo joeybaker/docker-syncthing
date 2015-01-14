@@ -1,5 +1,7 @@
 # docker-syncthing
 
+![](http://dockeri.co/image/joeybaker/syncthing)
+
 Run syncthing from a docker container
 
 ## Install
