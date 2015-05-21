@@ -22,5 +22,7 @@ docker run -d --restart=always \
 
 If you want to add a new folder, make sure you set the path to something in `/srv/data`.
 
+**NOTE**: for security reasons, starting this docker container will change the permissions of all files in your data directory to a new, docker-only user. This ensures that the docker container can access the files.
+
 ## Developing
 You can run `run.sh` to restart the bud-ssl terminator and syncthing. Any push to this repo will auto-update the docker image on docker hub.
