@@ -13,7 +13,7 @@ RUN apt-get update -qq \
   && chmod +x /usr/local/bin/gosu
 
 # get syncthing
-ADD https://github.com/syncthing/syncthing/releases/download/v0.11.16/syncthing-linux-amd64-v0.11.16.tar.gz /srv/syncthing.tar.gz
+ADD https://github.com/syncthing/syncthing/releases/download/v0.11.18/syncthing-linux-amd64-v0.11.18.tar.gz /srv/syncthing.tar.gz
 WORKDIR /srv
 RUN tar -xzvf syncthing.tar.gz \
   && rm -f syncthing.tar.gz \
