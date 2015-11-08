@@ -4,7 +4,7 @@ docker rm -f bud
 docker run -d --restart=always \
   -v /srv/sync:/srv/data \
   -v /srv/syncthing:/srv/config \
-  -p 22000:22000  -p 21025:21025/udp \
+  -p 22000:22000  -p 21027:21027/udp \
   --name syncthing \
   joeybaker/syncthing
 

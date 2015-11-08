@@ -1,7 +1,7 @@
 FROM ubuntu:14.04
 MAINTAINER Joey Baker <joey@byjoeybaker.com>
 
-RUN useradd --no-create-home -g users --uid 22000 syncthing
+RUN useradd --no-create-home -g users --uid 1027 syncthing
 # grab gosu for easy step-down from root
 RUN apt-get update -qq \
   && apt-get install curl -y \
@@ -13,7 +13,7 @@ RUN apt-get update -qq \
   && chmod +x /usr/local/bin/gosu
 
 # get syncthing
-ADD https://github.com/syncthing/syncthing/releases/download/v0.11.26/syncthing-linux-amd64-v0.11.26.tar.gz /srv/syncthing.tar.gz
+ADD https://github.com/syncthing/syncthing/releases/download/v0.12.1/syncthing-linux-amd64-v0.12.1.tar.gz /srv/syncthing.tar.gz
 WORKDIR /srv
 RUN tar -xzvf syncthing.tar.gz \
   && rm -f syncthing.tar.gz \
