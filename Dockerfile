@@ -15,7 +15,7 @@ RUN apt-get update -qq \
 WORKDIR /srv
 RUN useradd --no-create-home -g users --uid 1027 syncthing
 RUN export version=0.12.8 \ 
-  && curl -vv -L -o syncthing.tar.gz https://github.com/syncthing/syncthing/releases/download/v$version/syncthing-linux-amd64-v$version.tar.gz \
+  && curl -L -o syncthing.tar.gz https://github.com/syncthing/syncthing/releases/download/v$version/syncthing-linux-amd64-v$version.tar.gz \
   && tar -xzvf syncthing.tar.gz \
   && rm -f syncthing.tar.gz \
   && mv syncthing-linux-amd64-v* syncthing \
