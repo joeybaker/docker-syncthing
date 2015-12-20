@@ -23,6 +23,8 @@ RUN export version=0.12.8 \
   && tar -xzvf syncthing.tar.gz \
   && rm -f syncthing.tar.gz \
   && mv syncthing-linux-amd64-v* syncthing \
+  && rm -rf syncthing/etc \
+  && rm -rf syncthing/*.pdf \
   && mkdir -p /srv/config \
   && mkdir -p /srv/data \
 
