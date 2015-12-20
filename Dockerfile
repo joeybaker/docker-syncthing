@@ -17,13 +17,12 @@ RUN gpg --keyserver pgp.mit.edu --recv-keys B42F6819007F00F88E364FD4036A9C25BF35
 
 # get syncthing
 WORKDIR /srv
-RUN useradd --no-create-home -g users --uid 1027 syncthing
+RUN useradd --no-create-home -g users syncthing
 RUN export version=0.12.8 \ 
   && curl -L -o syncthing.tar.gz https://github.com/syncthing/syncthing/releases/download/v$version/syncthing-linux-amd64-v$version.tar.gz \
   && tar -xzvf syncthing.tar.gz \
   && rm -f syncthing.tar.gz \
   && mv syncthing-linux-amd64-v* syncthing \
-  && chown -R syncthing:users syncthing \
   && mkdir -p /srv/config \
   && mkdir -p /srv/data \
 
@@ -31,6 +30,8 @@ VOLUME ["/srv/data", "/srv/config"]
 
 ADD ./start.sh /srv/start.sh
 RUN chmod 770 /srv/start.sh
+
+ENV UID=1027
 
 ENTRYPOINT ["/srv/start.sh"]
 

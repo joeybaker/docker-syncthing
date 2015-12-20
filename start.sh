@@ -13,8 +13,9 @@ if [ ! -f /srv/config/config.xml ]; then
 	sed -e "s/<address>127.0.0.1:8384/<address>0.0.0.0:8080/" -i /srv/config/config.xml
 fi
 
+usermod -u $UID syncthing
 # set permissions so that we have access to volumes
-chown -R syncthing:users /srv/config /srv/data
+chown -R syncthing:users /srv/config /srv/data /srv/syncthing
 chmod -R 770 /srv/config /srv/data
 
 gosu syncthing /srv/syncthing/syncthing -home=/srv/config
