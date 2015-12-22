@@ -1,24 +1,30 @@
-FROM ubuntu:14.04
+FROM ubuntu:15.10
 MAINTAINER Joey Baker <joey@byjoeybaker.com>
 
-RUN useradd --no-create-home -g users --uid 1027 syncthing
+RUN apt-get update \
+  && apt-get upgrade -y --no-install-recommends \
+  && apt-get install curl ca-certificates -y --no-install-recommends \
+  && apt-get autoremove -y \
+  && apt-get clean
+
 # grab gosu for easy step-down from root
-RUN apt-get update -qq \
-  && apt-get install curl -y \
-  && gpg --keyserver pgp.mit.edu --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4 \
+RUN gpg --keyserver pgp.mit.edu --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4 \
   && curl -o /usr/local/bin/gosu -SL "https://github.com/tianon/gosu/releases/download/1.2/gosu-$(dpkg --print-architecture)" \
-  && curl -o /usr/local/bin/gosu.asc -SL "https://github.com/tianon/gosu/releases/download/1.2/gosu-$(dpkg --print-architecture).asc" \
+  && curl -o /usr/local/bin/gosu.asc -L "https://github.com/tianon/gosu/releases/download/1.2/gosu-$(dpkg --print-architecture).asc" \
   && gpg --verify /usr/local/bin/gosu.asc \
   && rm /usr/local/bin/gosu.asc \
   && chmod +x /usr/local/bin/gosu
 
 # get syncthing
-ADD https://github.com/syncthing/syncthing/releases/download/v0.12.8/syncthing-linux-amd64-v0.12.8.tar.gz /srv/syncthing.tar.gz
 WORKDIR /srv
-RUN tar -xzvf syncthing.tar.gz \
+RUN useradd --no-create-home -g users syncthing
+RUN export version=0.12.8 \ 
+  && curl -L -o syncthing.tar.gz https://github.com/syncthing/syncthing/releases/download/v$version/syncthing-linux-amd64-v$version.tar.gz \
+  && tar -xzvf syncthing.tar.gz \
   && rm -f syncthing.tar.gz \
   && mv syncthing-linux-amd64-v* syncthing \
-  && chown -R syncthing:users syncthing \
+  && rm -rf syncthing/etc \
+  && rm -rf syncthing/*.pdf \
   && mkdir -p /srv/config \
   && mkdir -p /srv/data \
 
@@ -26,6 +32,8 @@ VOLUME ["/srv/data", "/srv/config"]
 
 ADD ./start.sh /srv/start.sh
 RUN chmod 770 /srv/start.sh
+
+ENV UID=1027
 
 ENTRYPOINT ["/srv/start.sh"]
 
