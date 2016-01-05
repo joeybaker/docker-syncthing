@@ -1,6 +1,8 @@
 FROM ubuntu:15.10
 MAINTAINER Joey Baker <joey@byjoeybaker.com>
 
+ENV SYNCTHING_VERSION 0.12.11
+
 RUN apt-get update \
   && apt-get upgrade -y --no-install-recommends \
   && apt-get install curl ca-certificates -y --no-install-recommends \
@@ -19,7 +21,7 @@ RUN gpg --keyserver pgp.mit.edu --recv-keys B42F6819007F00F88E364FD4036A9C25BF35
 WORKDIR /srv
 RUN useradd --no-create-home -g users syncthing
 RUN export version=0.12.9 \ 
-  && curl -L -o syncthing.tar.gz https://github.com/syncthing/syncthing/releases/download/v$version/syncthing-linux-amd64-v$version.tar.gz \
+  && curl -L -o syncthing.tar.gz https://github.com/syncthing/syncthing/releases/download/v$SYNCTHING_VERSION/syncthing-linux-amd64-v$SYNCTHING_VERSION.tar.gz \
   && tar -xzvf syncthing.tar.gz \
   && rm -f syncthing.tar.gz \
   && mv syncthing-linux-amd64-v* syncthing \
