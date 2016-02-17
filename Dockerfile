@@ -28,7 +28,7 @@ RUN curl -L -o syncthing.tar.gz https://github.com/syncthing/syncthing/releases/
   && rm -rf syncthing/etc \
   && rm -rf syncthing/*.pdf \
   && mkdir -p /srv/config \
-  && mkdir -p /srv/data \
+  && mkdir -p /srv/data
 
 VOLUME ["/srv/data", "/srv/config"]
 
