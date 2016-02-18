@@ -1,4 +1,4 @@
-# apline is becoming the new default https://www.brianchristner.io/docker-is-moving-to-alpine-linux/
+# apline is becoming the new default
 FROM alpine:latest
 MAINTAINER Joey Baker <joey@byjoeybaker.com>
 
