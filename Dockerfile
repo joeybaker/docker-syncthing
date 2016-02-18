@@ -1,5 +1,5 @@
 # apline is becoming the new default
-FROM alpine:lastest
+FROM alpine:latest
 MAINTAINER Joey Baker <joey@byjoeybaker.com>
 
 ENV SYNCTHING_VERSION 0.12.19
