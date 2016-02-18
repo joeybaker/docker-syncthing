@@ -1,5 +1,5 @@
-# ubunut 15 saves about 50MB over ubuntu stable
-FROM ubuntu:15.10
+# apline is becoming the new default
+FROM alpine:lastest
 MAINTAINER Joey Baker <joey@byjoeybaker.com>
 
 ENV SYNCTHING_VERSION 0.12.19
