@@ -8,7 +8,7 @@ docker run -d --restart=always \
   --name syncthing \
   joeybaker/syncthing
 
-sleep 1
+sleep 3
 docker run -d --restart=always \
   -v /srv/bud:/data \
   -p 443:443 \
