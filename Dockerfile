@@ -2,7 +2,7 @@
 FROM ubuntu:15.10
 MAINTAINER Joey Baker <joey@byjoeybaker.com>
 
-ENV SYNCTHING_VERSION 0.12.20
+ENV SYNCTHING_VERSION 0.12.21
 
 RUN apt-get update \
   && apt-get upgrade -y --no-install-recommends \
