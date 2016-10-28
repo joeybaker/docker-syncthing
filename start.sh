@@ -15,7 +15,7 @@ fi
 
 usermod -u $UID syncthing
 # set permissions so that we have access to volumes
-chown -R syncthing:users /srv/config /srv/data /srv/syncthing
+chown -R syncthing:users /srv/config /srv/data /srv/syncthing &
 chmod -R 770 /srv/config /srv/data
 
 gosu syncthing /srv/syncthing/syncthing -home=/srv/config
